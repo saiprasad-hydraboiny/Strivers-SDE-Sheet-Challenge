@@ -34,6 +34,63 @@ class Solution {
         
     }
 }
+Merge two sorted LL
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+
+        //base case
+        if(list1==null)
+        {
+            return list2;
+        }
+        if(list2==null)
+        {
+            return list1;
+        }
+        ListNode h=null;
+        ListNode t=null;
+        if(list1.val<=list2.val)
+        {
+            h=list1;
+            t=h;
+            list1=list1.next;
+        }
+        else
+        {
+            h=list2;
+            t=h;
+            list2=list2.next;
+        }
+
+        while(list1!=null && list2!=null)
+        {
+            if(list1.val<=list2.val)
+            {
+                t.next=list1;
+                list1=list1.next;
+                t=t.next;
+            }
+            else
+            {
+                t.next=list2;
+                list2=list2.next;
+                t=t.next;
+            }
+        }
+
+        if(list1!=null)
+        {
+            t.next=list1;
+        }
+
+        if(list2!=null)
+        {
+            t.next=list2;
+        }
+        return h;
+        
+    }
+}
 
 Remove Nth node from End of the List
 class Solution {
