@@ -20,3 +20,31 @@ class Solution {
         
     }
 }
+PreOrder Iterative
+class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer>preOrder=new ArrayList<>();
+        Stack<TreeNode>st=new Stack<>();
+        st.push(root);
+        if(root==null)
+        {
+            return preOrder;
+        }
+        while(!st.isEmpty())
+        {
+            TreeNode x=st.peek();
+            preOrder.add(x.val);
+            st.pop();
+            if(x.right!=null)
+            {
+                st.push(x.right);
+            }
+            if(x.left!=null)
+            {
+                st.push(x.left);
+            }
+        }
+        return preOrder;
+        
+    }
+}
