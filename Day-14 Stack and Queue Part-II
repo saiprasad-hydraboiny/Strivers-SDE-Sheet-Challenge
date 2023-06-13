@@ -21,3 +21,46 @@ public class Solution {
         return left;
     }
 }
+Implement Min Stack
+class MinStack {
+
+    // Stack<Integer>st;
+    // Stack<Integer>Min_st;
+    // public MinStack() {
+    //     st=new Stack<Integer>();
+    //     Min_st=new Stack<Integer>();  
+    // }
+
+    Stack<Integer>st=new Stack<Integer>();
+    Stack<Integer>Min_st=new Stack<Integer>();
+    
+    public void push(int val) {
+        st.push(val);
+        if(Min_st.empty())
+        {
+            
+            Min_st.push(val);
+        }
+        else
+        {
+            Min_st.push(Math.min(Min_st.peek(),val));
+        }
+        
+    }
+    
+    public void pop() {
+        st.pop();
+        Min_st.pop();
+
+        
+    }
+    
+    public int top() {
+        return st.peek();
+        
+    }
+    
+    public int getMin() {
+        return Min_st.peek();
+    }
+}
