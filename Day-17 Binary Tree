@@ -48,3 +48,37 @@ class Solution {
         
     }
 }
+Post Order 2 stack
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        Stack<TreeNode>st1=new Stack<TreeNode>();
+        Stack<TreeNode>st2=new Stack<TreeNode>();
+        st1.push(root);
+        List<Integer>post=new ArrayList<Integer>();
+        if(root==null)
+        {
+            return post;
+        }
+        while(!st1.isEmpty())
+        {
+            TreeNode temp=st1.pop();
+            st2.push(temp);
+            if(temp.left!=null)
+            {
+                st1.push(temp.left);
+            }
+            if(temp.right!=null)
+            {
+                st1.push(temp.right);
+            }
+        }
+        
+        while(!st2.isEmpty())
+        {
+            post.add(st2.pop().val);
+        }
+        return post;
+
+        
+    }
+}
