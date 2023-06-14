@@ -82,3 +82,44 @@ class Solution {
         
     }
 }
+left view
+class Tree
+{
+    //Function to return list containing elements of left view of binary tree.
+    ArrayList<Integer> leftView(Node root)
+    {
+      // Your code here
+      Queue<Node>q=new LinkedList<Node>();
+      ArrayList<Integer>leftView=new ArrayList<>();
+      if(root==null)
+      {
+          return leftView;
+      }
+      q.add(root);
+      
+      while(q.size()>0)
+      {
+          int qsize=q.size();
+          for(int i=1;i<=qsize;i++)
+          {
+             Node f=q.element();
+             q.remove();
+             if(i==1)
+             {
+                 leftView.add(f.data);
+             }
+             
+             if(f.left!=null)
+             {
+                 q.add(f.left);
+             }
+             if(f.right!=null)
+             {
+                 q.add(f.right);
+             }
+          }
+      }
+      
+      return leftView;
+    }
+}
