@@ -1,0 +1,27 @@
+Symmentric tree
+class Solution {
+    public boolean Symmentric(TreeNode A,TreeNode B)
+    {
+        if(A==null && B==null)
+        {
+            return true;
+        }
+        if(A==null || B==null)
+        {
+            return false;
+        }
+        if(A.val!=B.val)
+        {
+            return false;
+        }
+
+        return(Symmentric(A.left,B.right) && Symmentric(A.right,B.left));
+    }
+    public boolean isSymmetric(TreeNode root) {
+        if(root==null)
+        {
+            return true;
+        }
+        return Symmentric(root.left,root.right);
+    }
+}
