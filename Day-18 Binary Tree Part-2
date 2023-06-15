@@ -1,0 +1,79 @@
+Binary Tree Level Order Traversal
+class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+
+        List<List<Integer>>res=new ArrayList<List<Integer>>();
+        if(root==null)
+        {
+            return res;
+        }
+        Queue<TreeNode>q=new LinkedList<>();
+        q.add(root);
+        while(q.size()>0)
+        {
+            int size=q.size();
+            ArrayList<Integer>arr=new ArrayList<Integer>();
+            for(int i=0;i<size;i++)
+            {
+                TreeNode f=q.element();
+                arr.add(f.val);
+                q.remove();
+                if(f.left!=null)
+                {
+                    q.add(f.left);
+                }
+                if(f.right!=null)
+                {
+                    q.add(f.right);
+                }
+            }
+            res.add(arr);
+        }
+        
+        return res;
+        
+    }
+}
+Height of Binary Tree
+class Solution {
+    public int maxDepth(TreeNode root) {
+        if(root==null)
+        {
+            return 0;
+        }
+
+        int l=maxDepth(root.left);
+        int r=maxDepth(root.right);
+
+        return Math.max(l,r)+1;
+        
+    }
+}
+Construct Binary Tree from Preorder and Inorder Traversal
+class Solution {
+    public TreeNode Tree(int[] preorder,int sp,int ep,int[] inorder,int si,int ei)
+    {
+        if(sp>ep && si>ei)
+        {
+            return null;
+        }
+        TreeNode root=new TreeNode(preorder[sp]);
+        int idx=hm.get(preorder[sp]);
+        //sp,sp+1.sp+2...sp+x,sp+x+1.........ep
+        //si,si+1,si+2....idx-1 idx idx+1....ei
+        int x=idx-si;
+        root.left=Tree(preorder,sp+1,sp+x,inorder,si,idx-1);
+        root.right=Tree(preorder,sp+x+1,ep,inorder,idx+1,ei);
+        return root;
+    }
+    HashMap<Integer,Integer>hm;
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        hm=new HashMap<Integer,Integer>();
+        for(int i=0;i<inorder.length;i++)
+        {
+            hm.put(inorder[i],i);
+        }
+        int n=preorder.length;
+        return Tree(preorder,0,n-1,inorder,0,n-1);
+    }
+}
