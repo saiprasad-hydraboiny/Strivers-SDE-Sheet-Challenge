@@ -67,3 +67,38 @@ class Solution {
         
     }
 }
+
+Stack using queues
+class MyStack {
+
+    Queue<Integer>q;
+
+    public MyStack() {
+        q=new LinkedList<Integer>();   
+    }
+    
+    public void push(int x) {
+        int n=q.size();
+        q.add(x);
+        while(n>0 && !q.isEmpty())
+        {
+            q.add(q.poll());
+            n--;
+        }
+        
+        
+    }
+    
+    public int pop() {
+        return q.poll();
+    }
+    
+    public int top() {
+        return q.element();   
+    }
+    
+    public boolean empty() {
+        return q.isEmpty();
+        
+    }
+}
